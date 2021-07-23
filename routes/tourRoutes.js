@@ -28,7 +28,7 @@ router
     authController.restrictTo('admin', 'lead-guide', 'guide'),
     tourController.getMonthlyPlan
   );
-router.route('/distances/:latlng/unit/:unit').get(tourController.getDistances)
+router.route('/distances/:latlng/unit/:unit').get(tourController.getDistances);
 
 router
   .route('/tour-within/:distance/center/:latlng/unit/:unit')
@@ -49,6 +49,8 @@ router
   .patch(
     authController.protect,
     authController.restrictTo('admin', 'lead-guide'),
+    tourController.uploadTourImages,
+    tourController.resizeTourImages,
     tourController.updateTour
   )
   .delete(
